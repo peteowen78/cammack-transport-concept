@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Cammack Transport: C, Road 5 (direction) (concept)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;800;900&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--mway:#1F4CB0;--green:#0B6B47;--yellow:#FFD21F;--red:#E0262E;--tarmac:#2B2E35;--white:#FFFFFF;--line:#E4E7EE;--ink:#14182A}
+*{box-sizing:border-box}
+html,body{overflow-x:clip}
+body{margin:0;background:#F6F7FA;color:var(--ink);font:400 1.0625rem/1.55 Overpass,system-ui,sans-serif}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:1220px;margin:0 auto;padding:0 24px}
+h1,h2,h3{margin:0;font-weight:900;letter-spacing:-.015em;line-height:1.02}
+/* a road sign: rounded panel, white keyline inset */
+.sign{position:relative;border-radius:18px;color:#fff;box-shadow:inset 0 0 0 5px currentColor;}
+.sign.b{background:var(--mway);box-shadow:inset 0 0 0 6px var(--mway),inset 0 0 0 10px #fff}
+.sign.gr{background:var(--green);box-shadow:inset 0 0 0 6px var(--green),inset 0 0 0 10px #fff}
+.sign.w{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 6px #fff,inset 0 0 0 10px var(--ink)}
+.plate{display:inline-block;background:var(--yellow);color:#111;font:700 1.05rem/1 Oswald,sans-serif;letter-spacing:.06em;padding:8px 12px 7px;border-radius:5px;box-shadow:inset 0 0 0 2px #111}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--yellow);color:#111;text-decoration:none;font-weight:900;padding:15px 22px 13px;border-radius:10px;min-height:52px;white-space:nowrap;box-shadow:inset 0 -4px 0 rgba(0,0,0,.18);transition:transform .12s}
+.btn:hover{transform:translateY(-1px)}.btn:active{transform:translateY(1px)}
+.btn.dark{background:var(--ink);color:#fff}
+.chev{height:26px;background:repeating-linear-gradient(-45deg,var(--red) 0 22px,var(--yellow) 22px 44px)}
+/* header */
+header{background:var(--tarmac);color:#fff}
+.hd{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:70px}
+.logo{text-decoration:none;display:flex;align-items:center;gap:12px}
+.logo i{width:40px;height:40px;border-radius:10px;background:var(--mway);box-shadow:inset 0 0 0 3px var(--mway),inset 0 0 0 5px #fff;display:grid;place-items:center;font:900 1.2rem/1 Overpass;font-style:normal}
+.logo b{font-weight:900;font-size:1.25rem;letter-spacing:-.01em}
+nav{display:flex;gap:24px;font-weight:800}
+nav a{text-decoration:none}nav a:hover{color:var(--yellow)}
+.hd .btn{min-height:44px;padding:11px 16px 9px}
+/* hero: the motorway sign */
+.hero{background:var(--tarmac);padding:30px 0 0;position:relative;overflow:hidden}
+.hero::after{display:none;content:"";position:absolute;left:50%;bottom:0;width:12px;height:120px;transform:translateX(-50%);background:repeating-linear-gradient(#fff 0 30px,transparent 30px 60px);opacity:.75}
+.hero .g{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:36px;align-items:center;padding-bottom:140px}
+.big{padding:34px 38px 34px}
+.big .row{display:flex;align-items:center;gap:16px;margin-bottom:14px}
+.jn{background:#fff;color:var(--mway);font:900 1.1rem/1 Overpass;padding:8px 10px 6px;border-radius:6px}
+.big h1{font-size:clamp(2.6rem,5.6vw,4.6rem)}
+.big p{font-size:1.2rem;margin:16px 0 0;max-width:36ch;color:#E3EAFB}
+.big .acts{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap}
+.hero .ph{position:relative}
+.hero .ph img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:18px;border:8px solid #fff;transform:rotate(2deg)}
+.hero .ph .plate{position:absolute;left:-14px;bottom:22px;transform:rotate(-4deg);font-size:1.25rem}
+/* services as direction signs */
+.dirs{padding:72px 0 60px}
+.dirs h2{font-size:clamp(2rem,4vw,3.1rem);max-width:18ch}
+.dirs p.sub{color:#4A5168;margin:12px 0 34px;max-width:54ch}
+.posts{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);grid-template-rows:auto auto;gap:20px}
+.post{padding:30px 32px 28px;text-decoration:none;display:flex;flex-direction:column;gap:12px;transition:transform .15s}
+.post:hover{transform:translateY(-3px)}
+.post.rail{grid-row:1/3}
+.post .top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.post h3{font-size:clamp(2.2rem,4vw,3.3rem)}
+.arrow{font:900 2.6rem/1 Overpass}
+.post ul{margin:6px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.post li{background:rgba(255,255,255,.16);border-radius:8px;padding:6px 10px 4px;font-weight:700;font-size:.92rem}
+.sign.w li{background:#EEF1F6}
+.post .ext{margin-top:auto;display:flex;align-items:center;gap:12px;font-weight:800}
+.post img{border-radius:10px;width:100%;aspect-ratio:16/9;object-fit:cover;margin:6px 0 4px}
+/* breakdown band */
+.brk{background:var(--yellow)}
+.brk .in{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:32px;align-items:center;padding:36px 24px}
+.tri{width:110px;height:96px;position:relative}
+.tri::before{content:"";position:absolute;inset:0;background:var(--red);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.tri::after{content:"!";position:absolute;inset:18px 0 0;display:grid;place-items:center;font:900 2.6rem/1 Overpass;color:var(--ink);background:#fff;clip-path:polygon(50% 22%,82% 88%,18% 88%)}
+.brk h2{font-size:clamp(1.7rem,3.2vw,2.5rem)}
+.brk p{margin:6px 0 0;max-width:60ch}
+/* destinations */
+.dest{padding:72px 0}
+.dest .g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:44px;align-items:center}
+.dest h2{font-size:clamp(2rem,4vw,3rem)}
+.dest p{color:#4A5168;max-width:48ch}
+.board{padding:26px 30px}
+.board h3{font-size:1rem;letter-spacing:.04em;margin:0 0 12px;opacity:.85;font-weight:800}
+.board .ln{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:9px 0;border-bottom:2px solid rgba(255,255,255,.25);font-weight:800;font-size:1.2rem}
+.board .ln:last-of-type{border-bottom:0}
+.board .ln span{font:700 1.05rem/1 Oswald;letter-spacing:.05em;background:#fff;color:var(--green);padding:5px 8px 4px;border-radius:5px}
+.board small{display:block;margin-top:14px;opacity:.85;font-size:.85rem}
+/* rail credentials as plates */
+.creds{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.creds .in{padding:64px 24px}
+.creds h2{font-size:clamp(1.9rem,3.6vw,2.8rem)}
+.creds p.sub{color:#4A5168;margin:10px 0 26px}
+.plates{display:flex;flex-wrap:wrap;gap:14px}
+.plates .plate{font-size:1.2rem;padding:12px 16px 10px}
+.plates .plate.w{background:#fff}
+/* drivers */
+.spot{padding:72px 0}
+.spot h2{font-size:clamp(1.9rem,3.6vw,2.8rem)}
+.spot p.sub{color:#4A5168;margin:10px 0 28px}
+.snaps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.snap{background:#fff;padding:10px 10px 12px;border-radius:6px;box-shadow:0 12px 24px -16px rgba(20,24,42,.5)}
+.snap:nth-child(odd){transform:rotate(-2deg)}.snap:nth-child(even){transform:rotate(1.6deg)}
+.snap img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:3px}
+.snap span{display:block;font-weight:800;font-size:.9rem;margin-top:8px}
+/* find */
+.find{background:var(--tarmac);color:#fff;padding:72px 0}
+.find .g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;gap:28px;align-items:stretch}
+.find .sign{padding:28px 30px}
+.find h2{font-size:clamp(2rem,4vw,3rem)}
+.find address{font-style:normal;font-size:1.15rem;margin:12px 0 18px;line-height:1.5}
+.find .calls a{display:flex;justify-content:space-between;gap:12px;text-decoration:none;padding:10px 0;border-bottom:2px solid rgba(255,255,255,.25);font-weight:800}
+.find .calls a:last-child{border-bottom:0}
+.nosales{width:190px;height:190px;border-radius:50%;background:#fff;box-shadow:inset 0 0 0 20px var(--red);display:grid;place-items:center;text-align:center;font:900 1.15rem/1.1 Overpass;color:var(--ink);padding:36px;align-self:center}
+footer{background:#1E2026;color:#BFC4D2;padding:26px 0 34px;font-size:.9rem}
+footer .small{font-size:.82rem;opacity:.85;max-width:92ch;margin:8px 0 0}
+@media (prefers-reduced-motion:no-preference){
+ .hero .big{animation:swing .9s cubic-bezier(.2,1.4,.4,1) both;transform-origin:50% 0}
+ @keyframes swing{from{opacity:0;transform:translateY(-30px) rotate(-2deg)}to{opacity:1;transform:none}}
+}
+@media (max-width:960px){
+ nav{display:none}
+ .hero .g,.dest .g{grid-template-columns:minmax(0,1fr)}
+ .posts{grid-template-columns:minmax(0,1fr)}
+ .post.rail{grid-row:auto}
+ .snaps{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .find .g{grid-template-columns:minmax(0,1fr)}
+ .nosales{justify-self:center}
+ .brk .in{grid-template-columns:auto minmax(0,1fr)}
+ .brk .btn{grid-column:1/3;justify-self:start}
+}
+@media (max-width:560px){
+ .wrap{padding:0 16px}
+ .logo b{font-size:1.05rem}
+ .hd .btn span{display:none}
+ .big{padding:26px 22px}
+ .big h1{font-size:2.5rem}
+ .big p{font-size:1.05rem}
+ .hero .g{padding-bottom:110px}
+ .hero .ph .plate{left:4px}
+ .post{padding:24px 22px 22px}
+ .board{padding:22px}
+ .find .sign{padding:24px 22px}
+ .brk .in{padding:28px 16px;gap:18px}
+ .tri{width:70px;height:62px}.tri::after{font-size:1.6rem;inset:12px 0 0}
+ .creds .in{padding:52px 16px}
+}
+</style>
+</head>
+<body>
+<div style="background:#17201B;color:#fff;font:500 14px/1.4 system-ui,sans-serif;padding:9px 20px;position:relative;display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;z-index:2147483000"><span style="display:inline-flex;align-items:center;gap:8px"><svg style="height:12px;width:auto;color:#fff" viewBox="0 0 487.5 208.5" role="img" aria-label="Pete Owen Design logo"><path fill="currentColor" d="M487.5,10.6h-41.2v15.5c-15.3-10.6-33.9-16.8-53.8-16.8-30.1,0-57,14.1-74.4,36-17.4-21.9-44.3-36-74.4-36s-57,14.1-74.4,36c-17.4-21.9-44.3-36-74.4-36C44.8,9.4,3.8,48,0,96.9h-.3v100.3h41.2v-14.5c15.3,10.6,33.9,16.8,53.8,16.8,30.1,0,57-14.1,74.4-36,17.4,21.9,44.3,36,74.4,36s57-14.1,74.4-36c17.4,21.9,44.3,36,74.4,36,52.4,0,95.1-42.6,95.1-95.1s0-1.3,0-1.9h0V10.6h0ZM94.6,158.2c-29.7,0-53.8-24.2-53.8-53.8s24.2-53.8,53.8-53.8,53.8,24.2,53.8,53.8-24.2,53.8-53.8,53.8ZM243.5,158.2c-29.7,0-53.8-24.2-53.8-53.8s24.2-53.8,53.8-53.8,53.8,24.2,53.8,53.8-24.2,53.8-53.8,53.8ZM392.4,158.2c-29.7,0-53.8-24.2-53.8-53.8s24.2-53.8,53.8-53.8,53.8,24.2,53.8,53.8-24.2,53.8-53.8,53.8Z"/></svg> Design idea by Pete Owen Design. Not the live Cammack Transport website.</span><a href="../index.html" style="color:#fff;font-weight:700">Back to the start</a></div>
+
+<header><div class="wrap hd">
+  <a class="logo" href="#top"><i aria-hidden="true">C</i><b>Cammack Transport</b></a>
+  <nav aria-label="Main"><a href="#where">Rail</a><a href="#where">Pallets</a><a href="#breakdown">Workshop</a><a href="#find">Find us</a></nav>
+  <a class="btn" href="tel:+441606863326">Call <span>01606 863326</span></a>
+</div></header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap g">
+    <div class="sign b big">
+      <div class="row"><span class="jn">M6</span><span class="jn">J18</span><b style="font-size:1.1rem">Winsford Industrial Estate</b></div>
+      <h1>Rail parts, pallets and lorry repairs. Road 5.</h1>
+      <p>A family haulier ten minutes off the M6, moving rail components for over 20 years.</p>
+      <div class="acts"><a class="btn" href="tel:+441606863326">Call 01606 863326</a></div>
+    </div>
+    <div class="ph">
+      <img src="https://cammacktransport.com/uploads/3/5/5/5/35555254/img-20220817-144342.jpg" alt="Two Cammack Transport lorries parked inside the warehouse">
+      <span class="plate">CAMMACK</span>
+    </div>
+  </div>
+</section>
+<div class="chev" aria-hidden="true"></div>
+
+<section class="dirs" id="where">
+  <div class="wrap">
+    <h2>Which way are you heading?</h2>
+    <p class="sub">One phone number, three extensions. Pick your sign.</p>
+    <div class="posts">
+      <a class="sign b post rail" href="tel:+441606863326">
+        <div class="top"><h3>Rail</h3><span class="arrow" aria-hidden="true">&#8593;</span></div>
+        <img src="https://cammacktransport.com/uploads/3/5/5/5/35555254/img-20221111-wa0015_orig.jpg" alt="Two Cammack lorries outside a rail depot">
+        <p style="margin:0">Specialist transport to the rail industry. Safety critical components, bespoke load security, satellite tracked vehicles.</p>
+        <ul><li>Bogies</li><li>Wheelsets</li><li>Locomotive engines</li><li>Power packs</li><li>Alternators</li><li>Traction motors</li></ul>
+        <span class="ext"><span class="plate">EXT 1</span>Rail enquiries</span>
+      </a>
+      <a class="sign gr post" href="tel:+441606863326">
+        <div class="top"><h3>Pallets</h3><span class="arrow" aria-hidden="true">&#8594;</span></div>
+        <p style="margin:0">Palletways network member. Premium and economy pallets across the UK and Europe, six standard sizes.</p>
+        <span class="ext"><span class="plate">EXT 4</span>Palletways enquiries</span>
+      </a>
+      <a class="sign w post" href="tel:+441606863326">
+        <div class="top"><h3>Workshop</h3><span class="arrow" aria-hidden="true">&#8592;</span></div>
+        <p style="margin:0">Servicing, MOT preparation and tachograph calibration for other operators' lorries and vans.</p>
+        <ul><li>VDO agent</li><li>TEXA diagnostics</li><li>Welding</li><li>Accident repairs</li><li>Collect and deliver</li></ul>
+        <span class="ext"><span class="plate">EXT 2</span>Workshop and advice</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="brk" id="breakdown">
+  <div class="wrap in">
+    <div class="tri" aria-hidden="true"></div>
+    <div>
+      <h2>Broken down? We do roadside breakdowns.</h2>
+      <p>Our workshop keeps our own Renault, DAF and Volvo fleet on the road. It can do the same for yours: servicing, repairs, tachographs and MOT preparation.</p>
+    </div>
+    <a class="btn dark" href="tel:+441606863326">Call Ext 2</a>
+  </div>
+</section>
+
+<section class="dest">
+  <div class="wrap g">
+    <div>
+      <h2>Pallets to your door around Crewe, Nantwich and Middlewich.</h2>
+      <p>We deliver Palletways pallets in the CW1 to CW6 and CW10 postcodes, and the network carries them on through more than 400 depots in 20 countries.</p>
+      <a class="btn" href="tel:+441606863326" style="margin-top:8px">Pallet enquiries, Ext 4</a>
+    </div>
+    <div class="sign gr board">
+      <h3>WE DELIVER TO</h3>
+      <div class="ln">Crewe <span>CW1 CW2 CW3</span></div>
+      <div class="ln">Holmes Chapel <span>CW4</span></div>
+      <div class="ln">Nantwich <span>CW5</span></div>
+      <div class="ln">Tarporley <span>CW6</span></div>
+      <div class="ln">Middlewich <span>CW10</span></div>
+      <small>Town names added to the postcodes for this design.</small>
+    </div>
+  </div>
+</section>
+
+<section class="creds">
+  <div class="wrap in">
+    <h2>Accredited for the rail work.</h2>
+    <p class="sub">FORS trained drivers, so we can work on London Underground and Transport for London sites.</p>
+    <div class="plates">
+      <span class="plate">ISO 9001</span>
+      <span class="plate w">MT300</span>
+      <span class="plate">GM/GN2498</span>
+      <span class="plate w">FORS BRONZE</span>
+      <span class="plate">LEZ COMPLIANT</span>
+      <span class="plate w">PLATINUM CLUB 2017</span>
+    </div>
+  </div>
+</section>
+
+<section class="spot">
+  <div class="wrap">
+    <h2>Spotted on the road.</h2>
+    <p class="sub">All photographs courtesy of our past and present multi-talented drivers.</p>
+    <div class="snaps">
+      <div class="snap"><img src="https://cammacktransport.com/uploads/3/5/5/5/35555254/6066859.png" alt="A Cammack Volvo carrying a rail power car"><span>Power car on board</span></div>
+      <div class="snap"><img src="https://cammacktransport.com/uploads/3/5/5/5/35555254/img-20220713-wa0009_orig.jpg" alt="Two Cammack Renaults loaded with wheelsets"><span>Wheelsets, two up</span></div>
+      <div class="snap"><img src="https://cammacktransport.com/uploads/3/5/5/5/35555254/5418992.jpg" alt="A Cammack lorry inside a rail depot"><span>In at the depot</span></div>
+      <div class="snap"><img src="https://cammacktransport.com/uploads/3/5/5/5/35555254/6511570.png" alt="The Cammack service support van"><span>Service support</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="find" id="find">
+  <div class="wrap g">
+    <div class="sign b">
+      <h2>Find Road 5.</h2>
+      <address>Cammack Transport Ltd<br>Road 5, Winsford Industrial Estate<br>Winsford, Cheshire CW7 3RB</address>
+      <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Road+5+Winsford+Industrial+Estate+CW7+3RB">Get directions</a>
+      <p style="margin:16px 0 0;color:#E3EAFB">Less than 10 minutes off junction 18 of the M6. Conference room for hire and storage on site too.</p>
+    </div>
+    <div class="sign gr calls">
+      <h2 style="font-size:1.8rem;margin-bottom:10px">01606 863326</h2>
+      <a href="tel:+441606863326">Rail <span>Ext 1</span></a>
+      <a href="tel:+441606863326">Workshop <span>Ext 2</span></a>
+      <a href="tel:+441606863326">Pallets <span>Ext 4</span></a>
+      <a href="mailto:sales@cammacktransport.com" style="font-size:.95rem;overflow-wrap:anywhere">sales@cammacktransport.com</a>
+    </div>
+    <div class="nosales" role="img" aria-label="A no entry style sign reading No sales calls please">No sales calls please</div>
+  </div>
+</section>
+</main>
+
+<div class="chev" aria-hidden="true"></div>
+<footer><div class="wrap">
+  <p>Cammack Transport Ltd, Road 5, Winsford Industrial Estate, Cheshire CW7 3RB. 01606 863326.</p>
+  <p class="small">Direction C, Road 5. Concept by Pete Owen Design, not the live Cammack Transport website. Services, extensions, postcodes, accreditations, "No sales calls please" and the drivers' photo credit are taken from Cammack's current website; headlines, photo captions and town names beside the postcodes are proposed copy added for this design. Photos are Cammack's own, from its website. Signs are drawn in the style of road signs and are not real signs.</p>
+</div></footer>
+</body>
+</html>
